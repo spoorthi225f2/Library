@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Books - Library Management System{% endblock %}
+
+{% block body_class %}admin-page{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>All Books</h2>
+    <a href="{{ url_for('admin.add_book_page') }}" class="btn btn-success">Add New Book</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>
+                {% if book.available %}
+                    <span class="badge badge-success">Available</span>
+                {% else %}
+                    <span class="badge badge-danger">Issued</span>
+                {% endif %}
+            </td>
+            <td class="action-buttons">
+                <a href="{{ url_for('admin.edit_book_page', book_id=book.id) }}" class="btn btn-sm btn-info">Edit</a>
+                <form method="POST" action="{{ url_for('admin.delete_book_page', book_id=book.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if not books %}
+<p class="no-data">No books found.</p>
+{% endif %}
+{% if users %}
+    <section class="users-list">
+        <h3>Users</h3>
+        <ul>
+        {% for user in users %}
+            <li>
+                <strong>Name:</strong> {{ user.name }} <br>
+                <strong>Email:</strong> {{ user.email }}
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    </section>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+{% endblock %}

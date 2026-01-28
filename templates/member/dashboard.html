@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Member Dashboard - Library Management System{% endblock %}
+
+{% block body_class %}member-page{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Member Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Books Borrowed</h3>
+            <p class="stat-number">{{ borrowed_books_count }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Available Books</h3>
+            <p class="stat-number available">{{ available_books_count }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-actions">
+        <h3>Quick Actions</h3>
+        <a href="{{ url_for('member.books') }}" class="btn btn-primary">Browse Books</a>
+    </div>
+</div>
+{% if users %}
+    <section class="users-list">
+        <h3>Users</h3>
+        <ul>
+        {% for user in users %}
+            <li>
+                <strong>Name:</strong> {{ user.name }} <br>
+                <strong>Email:</strong> {{ user.email }}
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    </section>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+{% endblock %}

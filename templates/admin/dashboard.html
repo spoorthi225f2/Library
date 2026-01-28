@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Library Management System{% endblock %}
+
+{% block body_class %}admin-page{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Admin Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Books</h3>
+            <p class="stat-number">{{ total_books }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Available</h3>
+            <p class="stat-number available">{{ available_books }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Issued</h3>
+            <p class="stat-number issued">{{ issued_books }}</p>
+        </div>
+    </div>
+
+    <div class="dashboard-actions">
+        <h3>Quick Actions</h3>
+        <a href="{{ url_for('admin.books') }}" class="btn btn-primary">Manage Books</a>
+        <a href="{{ url_for('admin.add_book_page') }}" class="btn btn-success">Add New Book</a>
+    </div>
+</div>
+{% if users %}
+    <section class="users-list">
+        <h3>Users</h3>
+        <ul>
+        {% for user in users %}
+            <li>
+                <strong>Name:</strong> {{ user.name }} <br>
+                <strong>Email:</strong> {{ user.email }}
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    </section>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+{% endblock %}
