@@ -260,19 +260,12 @@ library-web-app/
 │   ├── base.html        # Base template with navigation
 │   ├── login.html       # Login page
 │   ├── register.html    # Registration page
-│   ├── 404.html         # 404 error page
-│   ├── 403.html         # 403 forbidden page
-│   ├── 500.html         # 500 server error page
 │   ├── admin/
 │   │   ├── dashboard.html       # Admin dashboard
 │   │   ├── books.html           # Books list
-│   │   ├── add_book.html        # Add book form
-│   │   ├── edit_book.html       # Edit book form
-│   │   └── borrow_history.html  # Borrow history
 │   └── member/
 │       ├── dashboard.html       # Member dashboard
 │       ├── books.html           # Available books
-│       └── borrow_history.html  # Personal borrow history
 └── static/
     └── style.css        # CSS styling
 ```
